@@ -10,13 +10,16 @@ module.exports = {
         output: {
             filename: 'js/[name]' + fileVersion + '.js',
             chunkFilename: '[name]' + fileVersion + '.js',
-            libraryTarget: "system"
+            libraryTarget: "system",
+            devtoolNamespace: 'app1'
         },
         externals: ['vue', 'vue-router'], //, 'vuex', 'axios'],
         plugins: [
             new BundleAnalyzerPlugin({ analyzerMode: 'static', openAnalyzer: false, reportFilename: './report.html' })
         ],
-        optimization: {
+        devtool: 'sourcemap',
+        optimization:
+         {
             splitChunks: {
                 cacheGroups: {
                     commons: {
@@ -30,5 +33,9 @@ module.exports = {
     },
     chainWebpack: config => {
         config.plugins.delete('prefetch');
+        config.module.rule('vue').use('vue-loader').tap(options => {
+            options.hotReload = false;
+            return options
+        })
     }
 };

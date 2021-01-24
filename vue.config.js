@@ -17,19 +17,7 @@ module.exports = {
         plugins: [
             new BundleAnalyzerPlugin({ analyzerMode: 'static', openAnalyzer: false, reportFilename: './report.html' })
         ],
-        devtool: 'sourcemap',
-        optimization:
-         {
-            splitChunks: {
-                cacheGroups: {
-                    commons: {
-                        test: /[\\/]node_modules[\\/]/,
-                        name: 'vendors',
-                        chunks: 'async'
-                    }
-                }
-            }
-        }
+        devtool: 'sourcemap'
     },
     chainWebpack: config => {
         config.plugins.delete('prefetch');

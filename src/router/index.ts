@@ -4,7 +4,7 @@ import store from '../store';
 
 const routes: Array<RouteRecordRaw> = [
     {
-        path: '/',
+        path: '/:param?',
         name: 'Home',
         component: defineAsyncComponent(() => import(/* webpackChunkName: "Home" */ "../layout/pages/Home.vue"))
     }
